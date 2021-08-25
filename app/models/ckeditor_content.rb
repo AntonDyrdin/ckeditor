@@ -1,0 +1,2 @@
+class CkeditorContent < ApplicationRecord
+end
