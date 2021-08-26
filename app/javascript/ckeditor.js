@@ -9,7 +9,9 @@ function onBodyLoaded() {
         toolbarContainer.prepend(editor.ui.view.toolbar.element);
       }
       window.editor = editor;
-
+      if (location.pathname == "/") {
+        window.editor.isReadOnly = true;
+      }
       $.ajax({
         url: getRootPath() + '/show',
         success: function (html) {
