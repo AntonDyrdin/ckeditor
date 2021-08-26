@@ -1,7 +1,7 @@
 function onBodyLoaded() {
-  DecoupledEditor
+  DecoupledDocumentEditor
     .create(document.querySelector('#editor'), {
-      // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+      toolbar: [ "alignment:left", "alignment:right", "alignment:center", "alignment:justify", "undo", "redo", "blockQuote", "bold", "link", "ckfinder", "selectAll", "fontBackgroundColor", "fontColor", "fontFamily", "fontSize", "heading", "imageTextAlternative", "toggleImageCaption",  "imageInsert",  "imageResize", "imageStyle:wrapText", "imageStyle:breakText", "indent", "outdent", "italic", "numberedList", "bulletedList", "mediaEmbed", "strikethrough", "insertTable", "tableColumn", "tableRow", "mergeTableCells", "tableCellProperties", "tableProperties", "todoList", "underline" ]
     })
     .then(editor => {
       const toolbarContainer = document.querySelector('.toolbar-container');
