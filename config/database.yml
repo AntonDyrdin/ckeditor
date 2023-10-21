@@ -26,6 +26,7 @@ default: &default
 
 development:
   <<: *default
+  port: 5433
   database: ckeditor_development
 
   # The specified database role being used to connect to postgres.
