@@ -18,4 +18,5 @@ class ApiController < ActionController::API
       render plain: CkeditorContent.last.html
     end
   end
+
 end

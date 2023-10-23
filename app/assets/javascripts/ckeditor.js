@@ -1,6 +1,9 @@
+//= require upload-adapter
+
 function onBodyLoaded() {
   DecoupledDocumentEditor
     .create(document.querySelector('#editor'), {
+      extraPlugins: [this.uploader],
       toolbar: [ "alignment:left", "alignment:right", "alignment:center", "alignment:justify", "undo", "redo", "blockQuote", "bold", "link", "ckfinder", "selectAll", "fontBackgroundColor", "fontColor", "fontFamily", "fontSize", "heading", "imageTextAlternative", "toggleImageCaption",  "imageInsert",  "imageResize", "imageStyle:wrapText", "imageStyle:breakText", "indent", "outdent", "italic", "numberedList", "bulletedList", "mediaEmbed", "strikethrough", "insertTable", "tableColumn", "tableRow", "mergeTableCells", "tableCellProperties", "tableProperties", "todoList", "underline" ]
     })
     .then(editor => {
@@ -26,7 +29,6 @@ function onBodyLoaded() {
 
 
 function save() {
-  console.log(editor.getData());
   $.ajax({
     url: getRootPath() + '/save',
     data: {
@@ -38,4 +40,10 @@ function save() {
 
 function getRootPath() {
   return window.location.protocol + "//" + window.location.hostname + ((window.location.hostname == 'localhost') ? ":" + window.location.port : '')
+}
+
+function uploader(editor) {
+  editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+    return new UploadAdapter(loader, editor.config._config.api, editor.config._config.post_id);
+  };
 }
